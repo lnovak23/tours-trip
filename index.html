@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>IRONMAN Tours 2026 — Trip Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;min-height:100vh;font-family:'DM Sans',sans-serif;color:#e8e4dc;-webkit-text-size-adjust:100%}
+.app{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+.header{text-align:center;margin-bottom:40px}
+.header-label{font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:#c8a96e;margin-bottom:12px}
+.header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,52px);font-weight:600;color:#f5f0e8;line-height:1.1}
+.lang-bar{display:flex;justify-content:center;margin-bottom:32px}
+.lang-toggle{display:flex;gap:2px;background:#1a1c24;border:1px solid #2a2d38;border-radius:8px;padding:2px}
+.lang-btn{background:transparent;border:none;border-radius:6px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#6a6560;cursor:pointer;transition:all .2s}
+.lang-btn.active{background:#c8a96e;color:#0f1117}
+.lang-btn:hover:not(.active){color:#a0998e}
+.hero{background:linear-gradient(135deg,#1a1c24,#1e2030);border:1px solid #2a2d38;border-radius:20px;padding:36px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(200,169,110,.08),transparent 70%);pointer-events:none}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,42px);font-weight:700;color:#f5f0e8;line-height:1.1;margin-bottom:8px}
+.hero-dates{font-size:14px;color:#c8a96e;margin-bottom:24px;letter-spacing:.5px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:rgba(200,169,110,.1);border:1px solid rgba(200,169,110,.25);border-radius:100px;padding:6px 14px;font-size:13px;color:#e8e4dc}
+.chip b{color:#c8a96e;font-size:11px;margin-left:4px;font-weight:500}
+.sec{background:#1a1c24;border:1px solid #2a2d38;border-radius:16px;padding:28px;margin-bottom:16px}
+.sec-title{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#c8a96e;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:1px;background:#2a2d38}
+.dir-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6a6560;margin-bottom:10px}
+.fl{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid #2a2d38}
+.fl:last-child{border-bottom:none}
+.fp .tm{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#f5f0e8;line-height:1}
+.fp .cd{font-size:12px;color:#7a7670;margin-top:2px}
+.fp .ct{font-size:13px;color:#a0998e}
+.fp .dt{font-size:11px;color:#6a6560;margin-top:2px}
+.fa{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 8px}
+.fa .fn{font-size:11px;color:#c8a96e;font-weight:500;white-space:nowrap}
+.fa .ln{display:flex;align-items:center;gap:6px;width:100%}
+.fa .ln::before,.fa .ln::after{content:'';flex:1;height:1px;background:#3a3d48}
+.fa .dot{color:#c8a96e;font-size:14px}
+.fa .al{font-size:11px;color:#6a6560}
+.conn{background:#0f1117;border:1px dashed #2a2d38;border-radius:10px;padding:12px 16px;margin:8px 0;display:flex;align-items:center;gap:12px}
+.conn .ci{font-size:18px}
+.conn .cl{font-size:13px;color:#a0998e}
+.conn .ctm{font-family:'Cormorant Garamond',serif;font-size:20px;color:#80c870;font-weight:600}
+.conn .cd{font-size:11px;color:#6a6560;margin-top:2px}
+.hr-dash{border:none;border-top:1px dashed #2a2d38;margin:4px 0}
+.hn{font-family:'Cormorant Garamond',serif;font-size:22px;color:#f5f0e8;font-weight:600;margin-bottom:4px}
+.ha{font-size:13px;color:#7a7670;margin-bottom:16px;text-decoration:none;display:block}
+.hg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.hf .lb{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6a6560;margin-bottom:4px}
+.hf .vl{font-size:14px;color:#e8e4dc;font-weight:500}
+.hf .mn{font-family:'DM Sans',monospace;color:#c8a96e;font-size:13px}
+.ph{color:#c8a96e;text-decoration:none;font-weight:500;font-size:14px}
+.lg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.lc{background:#0f1117;border:1px solid #2a2d38;border-radius:12px;padding:16px}
+.lc.im{border-color:rgba(200,169,110,.3)}
+.li{font-size:20px;margin-bottom:10px}
+.ln2{font-size:14px;font-weight:600;color:#f5f0e8;margin-bottom:4px}
+.la{font-size:12px;color:#6a6560;margin-bottom:10px;line-height:1.5;text-decoration:none;display:block}
+.ls{display:flex;gap:12px;flex-wrap:wrap}
+.sv{font-family:'Cormorant Garamond',serif;font-size:20px;color:#c8a96e;font-weight:600}
+.su{font-size:10px;color:#6a6560;letter-spacing:1px;text-transform:uppercase}
+.rb{background:rgba(200,169,110,.12);border-radius:6px;padding:8px 10px;margin-top:10px;font-size:12px;color:#c8a96e}
+.al2{display:flex;flex-direction:column}
+.ai{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #2a2d38}
+.ai:last-child{border-bottom:none}
+.an{font-family:'Cormorant Garamond',serif;font-size:18px;color:#f5f0e8;font-weight:600;margin-bottom:2px}
+.ad{font-size:12px;color:#7a7670;line-height:1.5}
+.adst{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.dv{font-family:'Cormorant Garamond',serif;font-size:18px;color:#c8a96e;font-weight:600}
+.dtm{font-size:11px;color:#6a6560}
+.el{display:flex;flex-direction:column;gap:10px}
+.ei{display:flex;align-items:center;gap:14px;background:#0f1117;border:1px solid #2a2d38;border-radius:10px;padding:14px 16px}
+.ei .en{font-size:14px;font-weight:500;color:#f5f0e8}
+.ei .er{font-size:12px;color:#7a7670}
+.nl{display:flex;flex-direction:column;gap:8px}
+.ni{display:flex;gap:10px;font-size:13px;color:#a0998e;line-height:1.5;padding:10px 14px;background:#0f1117;border-radius:8px;border-left:2px solid #2a2d38}
+.pg{display:flex;flex-wrap:wrap;gap:8px}
+.pt{background:#0f1117;border:1px solid #2a2d38;border-radius:6px;padding:6px 12px;font-size:13px;color:#a0998e}
+.sb{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
+.btn{background:transparent;color:#7a7670;border:1px solid #2a2d38;border-radius:8px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:#4a4d58;color:#a0998e}
+.hidden{display:none}
+@media(max-width:600px){
+  .app{padding:24px 16px 60px}
+  .header{margin-bottom:24px}
+  .header h1{font-size:28px}
+  .header-label{font-size:10px;letter-spacing:3px}
+  .lang-bar{margin-bottom:20px}
+  .hero{padding:24px 20px;border-radius:16px}
+  .hero-name{font-size:24px}
+  .hero-dates{font-size:13px;margin-bottom:16px}
+  .chip{font-size:12px;padding:5px 12px}
+  .chip b{font-size:10px}
+  .sec{padding:20px 16px;border-radius:12px;margin-bottom:12px}
+  .sec-title{font-size:10px;letter-spacing:2.5px;margin-bottom:14px}
+  .fl{gap:8px;padding:14px 0}
+  .fp .tm{font-size:22px}
+  .fp .ct{font-size:12px}
+  .fp .cd{font-size:11px}
+  .fa .fn{font-size:10px}
+  .conn{padding:10px 12px;gap:10px}
+  .conn .ctm{font-size:18px}
+  .conn .cl{font-size:12px}
+  .hg{grid-template-columns:1fr 1fr;gap:10px}
+  .hn{font-size:20px}
+  .ha{font-size:12px}
+  .lg{grid-template-columns:1fr;gap:10px}
+  .lc{padding:14px}
+  .sv{font-size:18px}
+  .an{font-size:16px}
+  .dv{font-size:16px}
+  .ei{padding:12px 14px;gap:10px;flex-wrap:wrap}
+  .ei .ec{margin-left:0;margin-top:4px;width:100%;font-size:15px}
+  .ni{font-size:12px;padding:8px 12px}
+  .pt{font-size:12px;padding:5px 10px}
+  .sb{justify-content:center}
+  .btn{width:100%;text-align:center;padding:14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+const D={
+en:{
+  dest:"Tours, Loire Valley, France",
+  df:"11 June 2026",dt:"15 June 2026",n:4,
+  trv:[{n:"Luka Novak",r:"Athlete"},{n:"Larisa Milasinovic",r:"Partner"},{n:"Martina Novak",r:"Mother"},{n:"Gala Novak",r:"Daughter (7)"}],
+  fl:[
+    {d:"out",al:"Lufthansa",fn:"LH 1463",f:"Ljubljana",fc:"LJU",t:"Frankfurt",tc:"FRA",dp:"06:25",ar:"07:50",dt2:"Thu 11 Jun",tm:"1"},
+    {d:"out",al:"Lufthansa",fn:"LH 1030",f:"Frankfurt",fc:"FRA",t:"Paris CDG",tc:"CDG",dp:"09:45",ar:"11:00",dt2:"Thu 11 Jun",tm:"1"},
+    {d:"in",al:"Swiss",fn:"LX 633",f:"Paris CDG",fc:"CDG",t:"Zurich",tc:"ZRH",dp:"09:45",ar:"11:05",dt2:"Mon 15 Jun",tm:"1"},
+    {d:"in",al:"Air Baltic",fn:"LX 2274",f:"Zurich",fc:"ZRH",t:"Ljubljana",tc:"LJU",dp:"12:45",ar:"13:55",dt2:"Mon 15 Jun",tm:null}
+  ],
+  cn:[
+    {tp:"layover",lb:"Frankfurt (FRA) layover",dur:"1h 55min",dt:"Same terminal (T1), Schengen — no passport control",ic:"⏱"},
+    {tp:"train",lb:"CDG → Tours by TGV",dur:"~1h 07min",dt:"TGV inOui from CDG 2-TGV to Gare de Tours",ic:"🚄"},
+    {tp:"layover",lb:"Zurich (ZRH) layover",dur:"1h 40min",dt:"Schengen transit, same terminal area",ic:"⏱"}
+  ],
+  ht:{nm:"ibis Tours Centre Gare",ad:"1 Rue Maurice Genest, 37000 Tours, France",rm:"2× Standard Room (1 double bed each)",cf:"QCGDFDSC",ci:"11 Jun, from 14:00",co:"15 Jun, by 12:00",nt:4,ph:"+33 2 47 70 35 35"},
+  kl:{
+    race:{nm:"Parc des Expositions de Tours",ad:"22 Av. Camille Chautemps, 37000 Tours",dist:"2.7 km",dr:"12 min taxi",rd:"Sunday 14 June 2026",rt:"Early AM (rolling start)"},
+    train:{nm:"Gare de Tours",ad:"Place du Maréchal Leclerc, 37000 Tours",dist:"200 m",wk:"2 min",nt:"TGV to Paris CDG ~1h07"},
+    city:{dist:"500 m",wk:"7 min"},
+    air:{nm:"Paris Charles De Gaulle (CDG)",tr:"~1h07 by TGV"}
+  },
+  at:[
+    {n:"Place Plumereau",d:"Historic square with half-timbered houses, cafés & restaurants",ds:"1 km",w:"13 min"},
+    {n:"Cathédrale Saint-Gatien",d:"Gothic cathedral with stunning stained glass windows",ds:"800 m",w:"10 min"},
+    {n:"Basilique Saint-Martin",d:"Romano-Byzantine basilica with ornate dome",ds:"1 km",w:"13 min"},
+    {n:"Château de Tours",d:"Historic towers with aquarium & wax museum (kid-friendly)",ds:"1.2 km",w:"15 min"},
+    {n:"Jardin Botanique",d:"Botanical garden with playground & small animal park",ds:"1.5 km",w:"20 min"},
+    {n:"Loire Riverbank",d:"Riverside walk along Île Aucard — great for a family stroll",ds:"1 km",w:"12 min"}
+  ],
+  em:[{n:"Luka Novak",r:"Primary contact",c:"+386 31 707 018"},{n:"ibis Tours Centre Gare",r:"Hotel (24/7)",c:"+33 2 47 70 35 35"}],
+  notes:[
+    "IRONMAN full distance: 3.8 km swim (River Cher) / 180 km bike (~800 m elevation, châteaux route) / 42.2 km run (Cher riverbanks, Lac de Tours). Transition & finish indoor at Parc des Expositions.",
+    "Booking ref flights: YDRE2S (SWISS/Lufthansa). Booking ref hotel: QCGDFDSC (ALL Accor). Breakfast included.",
+    "Room 1: Luka + Larisa (2 adults, €592.20). Room 2: Martina + Gala (1 adult + 1 child, €523.80). Extra breakfast: €28. Total hotel: €1,166.44 — paid at hotel.",
+    "Luka's bike travels as Sports/Special Baggage on all 4 segments (LJU-FRA, FRA-CDG, CDG-ZRH, ZRH-LJU). Confirmed with Lufthansa.",
+    "Race week: Fri 12 Jun = Expo & bib collection. Sat 13 Jun = Bike check-in & transition bags. Sun 14 Jun = RACE DAY.",
+    "TIGHT return: Mon 15 Jun check-out by 12:00, but flight from CDG at 09:45 → must leave hotel by ~06:30 for early TGV to CDG."
+  ],
+  pack:["Passports (Gala's too!)","Tri suit & race gear","Bike box + tools","Wetsuit (water ~18-20°C)","Comfortable walking shoes","Sunscreen & hats","Travel insurance docs","Snacks for Gala"],
+  L:{fl:"Flights",out:"Outbound",ret:"Return",acc:"Accommodation",rm:"Room",cf:"Confirmation",ci:"Check-in",co:"Check-out",nt:"Nights",hp:"Hotel Phone",kl:"Key Locations",ch:"City Highlights",fh:"from hotel",bc:"by car / taxi",of:"on foot",tc:"to city centre",em:"Emergency Contacts",in2:"Important Notes",sp:"Suggested Packing",cp:"Copy as text",cpd:"Copied!",cc:"City Centre",gw:"Gateway airport"}
+},
+sl:{
+  dest:"Tours, Dolina Loare, Francija",
+  df:"11. junij 2026",dt:"15. junij 2026",n:4,
+  trv:[{n:"Luka Novak",r:"Športnik"},{n:"Larisa Milasinovic",r:"Partnerka"},{n:"Martina Novak",r:"Mama"},{n:"Gala Novak",r:"Hčerka (7)"}],
+  fl:[
+    {d:"out",al:"Lufthansa",fn:"LH 1463",f:"Ljubljana",fc:"LJU",t:"Frankfurt",tc:"FRA",dp:"06:25",ar:"07:50",dt2:"čet 11. jun",tm:"1"},
+    {d:"out",al:"Lufthansa",fn:"LH 1030",f:"Frankfurt",fc:"FRA",t:"Pariz CDG",tc:"CDG",dp:"09:45",ar:"11:00",dt2:"čet 11. jun",tm:"1"},
+    {d:"in",al:"Swiss",fn:"LX 633",f:"Pariz CDG",fc:"CDG",t:"Zürich",tc:"ZRH",dp:"09:45",ar:"11:05",dt2:"pon 15. jun",tm:"1"},
+    {d:"in",al:"Air Baltic",fn:"LX 2274",f:"Zürich",fc:"ZRH",t:"Ljubljana",tc:"LJU",dp:"12:45",ar:"13:55",dt2:"pon 15. jun",tm:null}
+  ],
+  cn:[
+    {tp:"layover",lb:"Frankfurt (FRA) prestop",dur:"1h 55min",dt:"Isti terminal (T1), Schengen — brez mejne kontrole",ic:"⏱"},
+    {tp:"train",lb:"CDG → Tours z vlakom TGV",dur:"~1h 07min",dt:"TGV inOui iz CDG 2-TGV do Gare de Tours",ic:"🚄"},
+    {tp:"layover",lb:"Zürich (ZRH) prestop",dur:"1h 40min",dt:"Schengenski tranzit, isto območje terminalov",ic:"⏱"}
+  ],
+  ht:{nm:"ibis Tours Centre Gare",ad:"1 Rue Maurice Genest, 37000 Tours, Francija",rm:"2× Standardna soba (1 zakonska postelja)",cf:"QCGDFDSC",ci:"11. jun, od 14:00",co:"15. jun, do 12:00",nt:4,ph:"+33 2 47 70 35 35"},
+  kl:{
+    race:{nm:"Parc des Expositions de Tours",ad:"22 Av. Camille Chautemps, 37000 Tours",dist:"2,7 km",dr:"12 min s taksijem",rd:"Nedelja, 14. junij 2026",rt:"Zgodaj zjutraj (tekoči start)"},
+    train:{nm:"Gare de Tours",ad:"Place du Maréchal Leclerc, 37000 Tours",dist:"200 m",wk:"2 min",nt:"TGV do Pariza CDG ~1h07"},
+    city:{dist:"500 m",wk:"7 min"},
+    air:{nm:"Paris Charles De Gaulle (CDG)",tr:"~1h07 z vlakom TGV"}
+  },
+  at:[
+    {n:"Place Plumereau",d:"Zgodovinski trg s hišami s tramovi, kavarnami in restavracijami",ds:"1 km",w:"13 min"},
+    {n:"Cathédrale Saint-Gatien",d:"Gotska katedrala z osupljivimi vitraji",ds:"800 m",w:"10 min"},
+    {n:"Basilique Saint-Martin",d:"Romano-bizantinska bazilika z okrašeno kupolo",ds:"1 km",w:"13 min"},
+    {n:"Château de Tours",d:"Zgodovinska stolpa z akvarijem in muzej voščenih figur (za otroke)",ds:"1,2 km",w:"15 min"},
+    {n:"Jardin Botanique",d:"Botanični vrt z igriščem in mini živalskim vrtom",ds:"1,5 km",w:"20 min"},
+    {n:"Breg Loare",d:"Sprehod ob reki in Île Aucard — odlično za družinski sprehod",ds:"1 km",w:"12 min"}
+  ],
+  em:[{n:"Luka Novak",r:"Glavni kontakt",c:"+386 31 707 018"},{n:"ibis Tours Centre Gare",r:"Hotel (24/7)",c:"+33 2 47 70 35 35"}],
+  notes:[
+    "IRONMAN polna distanca: 3,8 km plavanje (reka Cher) / 180 km kolo (~800 m višinske razlike, trasa mimo gradov) / 42,2 km tek (ob Cheru, jezero Tours). Menjava in cilj v dvorani Parc des Expositions.",
+    "Ref. letov: YDRE2S (SWISS/Lufthansa). Ref. hotela: QCGDFDSC (ALL Accor). Zajtrk vključen.",
+    "Soba 1: Luka + Larisa (2 odrasla, €592,20). Soba 2: Martina + Gala (1 odrasla + 1 otrok, €523,80). Dodaten zajtrk: €28. Skupaj hotel: €1.166,44 — plačilo v hotelu.",
+    "Lukovo kolo potuje kot športna prtljaga na vseh 4 segmentih (LJU-FRA, FRA-CDG, CDG-ZRH, ZRH-LJU). Potrjeno pri Lufthansi.",
+    "Tekmovalni teden: pet 12. jun = Expo in prevzem startne številke. sob 13. jun = Oddaja kolesa in vrečk. ned 14. jun = DAN TEKME.",
+    "TESEN POVRATEK: pon 15. jun odjava do 12:00, a let iz CDG ob 09:45 → odhod iz hotela najkasneje ob ~06:30 za zgodnji TGV do CDG."
+  ],
+  pack:["Potni listi (tudi Galin!)","Tri dres in oprema","Kolesarska škatla + orodje","Neoprenska obleka (voda ~18-20°C)","Udobni čevlji za sprehode","Krema za sonce in klobuki","Potovalno zavarovanje","Prigrizki za Galo"],
+  L:{fl:"Leti",out:"Odhod",ret:"Povratek",acc:"Nastanitev",rm:"Soba",cf:"Potrditev",ci:"Prijava",co:"Odjava",nt:"Noči",hp:"Tel. hotela",kl:"Ključne lokacije",ch:"Znamenitosti mesta",fh:"od hotela",bc:"z avtom / taksijem",of:"peš",tc:"do centra",em:"Nujni kontakti",in2:"Pomembne opombe",sp:"Priporočeno za pakiranje",cp:"Kopiraj besedilo",cpd:"Kopirano!",cc:"Center mesta",gw:"Glavno letališče"}
+}
+};
+
+let lang="en";
+function render(){
+const d=D[lang],t=d.L,m=`https://maps.apple.com/?q=`,e=s=>encodeURIComponent(s),tel=p=>`tel:${p.replace(/\s/g,"")}`;
+const out=d.fl.filter(f=>f.d==="out"),inb=d.fl.filter(f=>f.d==="in");
+const outC=d.cn.filter(c=>c.lb.includes("Frankfurt")||c.lb.includes("TGV")||c.lb.includes("vlakom"));
+const inC=d.cn.filter(c=>c.lb.includes("Zurich")||c.lb.includes("Zürich"));
+const flt=f=>`<div class="fl"><div class="fp"><div class="tm">${f.dp}</div><div class="cd">${f.fc}</div><div class="ct">${f.f}</div><div class="dt">${f.dt2}</div></div><div class="fa"><div class="fn">${f.fn}</div><div class="ln"><span class="dot">›</span></div><div class="al">${f.al}</div></div><div class="fp" style="text-align:right"><div class="tm">${f.ar}</div><div class="cd">${f.tc}</div><div class="ct">${f.t}</div>${f.tm?`<div class="dt">Terminal ${f.tm}</div>`:""}</div></div>`;
+const con=c=>`<div class="conn"><div class="ci">${c.ic}</div><div><div class="cl">${c.lb}</div><div class="ctm">${c.dur}</div><div class="cd">${c.dt}</div></div></div>`;
+
+document.getElementById("app").innerHTML=`
+<div class="header"><div class="header-label">IRONMAN TOURS 2026</div><h1>IRONMAN Tours Métropole<br>Loire Valley 2026</h1></div>
+<div class="lang-bar"><div class="lang-toggle"><button class="lang-btn ${lang==="en"?"active":""}" onclick="lang='en';render()">English</button><button class="lang-btn ${lang==="sl"?"active":""}" onclick="lang='sl';render()">Slovenščina</button></div></div>
+
+<div class="hero"><div class="hero-name">${d.dest}</div><div class="hero-dates">📅 ${d.df} — ${d.dt} · ${d.n} ${t.nt.toLowerCase()}</div><div class="chips">${d.trv.map(v=>`<div class="chip">${v.n}<b>${v.r}</b></div>`).join("")}</div></div>
+
+<div class="sec"><div class="sec-title">${t.fl}</div>
+<div class="dir-label">${t.out}</div>${out.map(flt).join("")}
+<div style="margin:16px 0">${outC.map(con).join("")}</div>
+<hr class="hr-dash">
+<div class="dir-label" style="margin-top:14px">${t.ret}</div>${inb.map(flt).join("")}
+<div style="margin:16px 0">${inC.map(con).join("")}</div>
+</div>
+
+<div class="sec"><div class="sec-title">${t.acc}</div>
+<div class="hn">${d.ht.nm}</div>
+<a href="${m}${e(d.ht.ad)}" class="ha">📍 ${d.ht.ad}</a>
+<div class="hg">
+<div class="hf"><div class="lb">${t.rm}</div><div class="vl">${d.ht.rm}</div></div>
+<div class="hf"><div class="lb">${t.cf}</div><div class="vl mn">${d.ht.cf}</div></div>
+<div class="hf"><div class="lb">${t.ci}</div><div class="vl">${d.ht.ci}</div></div>
+<div class="hf"><div class="lb">${t.co}</div><div class="vl">${d.ht.co}</div></div>
+<div class="hf"><div class="lb">${t.nt}</div><div class="vl">${d.ht.nt}</div></div>
+<div class="hf"><div class="lb">${t.hp}</div><a href="${tel(d.ht.ph)}" class="ph">${d.ht.ph}</a></div>
+</div></div>
+
+<div class="sec"><div class="sec-title">${t.kl}</div><div class="lg">
+<div class="lc im"><div class="li">🏊</div><div class="ln2">${d.kl.race.nm}</div><a href="${m}${e(d.kl.race.ad)}" class="la">${d.kl.race.ad}</a><div class="ls"><div><div class="sv">${d.kl.race.dist}</div><div class="su">${t.fh}</div></div><div><div class="sv">${d.kl.race.dr}</div><div class="su">${t.bc}</div></div></div><div class="rb">🏁 ${d.kl.race.rd} · ${d.kl.race.rt}</div></div>
+<div class="lc"><div class="li">🚆</div><div class="ln2">${d.kl.train.nm}</div><a href="${m}${e(d.kl.train.ad)}" class="la">${d.kl.train.ad}</a><div class="ls"><div><div class="sv">${d.kl.train.dist}</div><div class="su">${t.fh}</div></div><div><div class="sv">${d.kl.train.wk}</div><div class="su">${t.of}</div></div></div>${d.kl.train.nt?`<div style="margin-top:10px;font-size:12px;color:#6a6560">${d.kl.train.nt}</div>`:""}</div>
+<div class="lc"><div class="li">🏛</div><div class="ln2">${t.cc}</div><div class="ls"><div><div class="sv">${d.kl.city.dist}</div><div class="su">${t.fh}</div></div><div><div class="sv">${d.kl.city.wk}</div><div class="su">${t.of}</div></div></div></div>
+<div class="lc"><div class="li">✈️</div><div class="ln2">${d.kl.air.nm}</div><div class="la">${t.gw}</div><div class="ls"><div><div class="sv" style="font-size:15px">${d.kl.air.tr}</div><div class="su">${t.tc}</div></div></div></div>
+</div></div>
+
+<div class="sec"><div class="sec-title">${t.ch}</div><div class="al2">${d.at.map(a=>`<div class="ai"><div><div class="an">${a.n}</div><div class="ad">${a.d}</div></div><div class="adst"><span class="dv">${a.ds}</span><span class="dtm">${a.w}</span></div></div>`).join("")}</div></div>
+
+<div class="sec"><div class="sec-title">${t.em}</div><div class="el">${d.em.map(x=>`<div class="ei"><div style="font-size:20px">👤</div><div><div class="en">${x.n}</div><div class="er">${x.r}</div></div><a href="${tel(x.c)}" class="ph ec">${x.c}</a></div>`).join("")}</div></div>
+
+<div class="sec"><div class="sec-title">${t.in2}</div><div class="nl">${d.notes.map(n=>`<div class="ni"><span>ℹ️</span>${n}</div>`).join("")}</div></div>
+
+<div class="sec"><div class="sec-title">${t.sp}</div><div class="pg">${d.pack.map(p=>`<div class="pt">📦 ${p}</div>`).join("")}</div></div>
+
+<div class="sb"><button class="btn" onclick="copyAll()"><span id="cpbtn">${t.cp}</span></button></div>
+`;}
+
+function copyAll(){
+const d=D[lang],t=d.L;
+const tx=[d.dest,d.df+" – "+d.dt+" ("+d.n+" "+t.nt.toLowerCase()+")","",...d.trv.map(v=>v.n+" ("+v.r+")"),"","--- "+t.fl+" ---",...d.fl.map(f=>(f.d==="out"?"→ ":"← ")+f.fn+" | "+f.f+" → "+f.t+" | "+f.dt2+" "+f.dp+"–"+f.ar),"",...d.cn.map(c=>"⏱ "+c.lb+": "+c.dur+" — "+c.dt),"","--- "+t.acc+" ---",d.ht.nm,d.ht.ad,t.rm+": "+d.ht.rm,t.cf+": "+d.ht.cf,t.ci+": "+d.ht.ci+" | "+t.co+": "+d.ht.co,"","--- "+t.em+" ---",...d.em.map(x=>x.n+" ("+x.r+"): "+x.c),"","--- "+t.in2+" ---",...d.notes].join("\n");
+navigator.clipboard.writeText(tx).then(()=>{document.getElementById("cpbtn").textContent="✓ "+d.L.cpd;setTimeout(()=>{document.getElementById("cpbtn").textContent=d.L.cp},2000)});
+}
+render();
+</script>
+</body>
+</html>
